@@ -35,7 +35,7 @@ func Edit(profile string) {
 	}
 
 	// bodyをValueだけにする？
-	tempfilePath := createTempfile("/tmp/"+test.json, body)
+	tempfilePath := createTempfile("/tmp/"+"test.json", body)
 	defer os.Remove(tempfilePath)
 
 	editBody := editFile(tempfilePath)

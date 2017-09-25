@@ -1,6 +1,9 @@
 package cli
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ssm"
@@ -12,5 +15,19 @@ func GetSession(profile string) (svc *ssm.SSM) {
 		Profile: profile,
 	}))
 	test := ssm.New(sess)
+
 	return test
+}
+
+func DescribeParameters(svc *ssm.SSM) (resp *ssm.DescribeParametersOutput) {
+
+	input := &ssm.DescribeParametersInput{}
+	resp, err := svc.DescribeParameters(input)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	return resp
 }
