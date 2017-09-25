@@ -25,6 +25,8 @@ import (
 
 var cfgFile string
 
+var profile string
+
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "ssm-edit",
@@ -56,6 +58,8 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ssm-edit.yaml)")
+	RootCmd.PersistentFlags().StringVar(&profile, "profile", "default", "~/.aws/credentials")
+	viper.BindPFlag("profile", RootCmd.PersistentFlags().Lookup("profile"))
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
