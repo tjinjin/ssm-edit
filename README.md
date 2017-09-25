@@ -18,6 +18,16 @@ $ ssm-edit edit
 $ ssm-edit show
 ```
 
+```
+# all
+global flag
+--profile
+
+# edit show
+local flag
+--name
+```
+
 
 # Todo
 - Add Makefile
