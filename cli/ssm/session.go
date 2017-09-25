@@ -31,3 +31,23 @@ func DescribeParameters(svc *ssm.SSM) (resp *ssm.DescribeParametersOutput) {
 
 	return resp
 }
+
+func GetParameter(svc *ssm.SSM, input *ssm.GetParameterInput) (resp *ssm.GetParameterOutput) {
+	resp, err := svc.GetParameter(input)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+
+	return resp
+}
+
+func PutParameter(svc *ssm.SSM, input *ssm.PutParameterInput) {
+	_, err := svc.PutParameter(input)
+
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}

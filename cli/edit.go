@@ -21,12 +21,7 @@ func Edit(profile string) {
 		Name: &name,
 	}
 
-	resp, err := svc.GetParameter(input)
-
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
+	resp := mySsm.GetParameter(svc, input)
 
 	body, err := json.MarshalIndent(resp, "", "  ")
 	if err != nil {
@@ -55,14 +50,7 @@ func Edit(profile string) {
 	s.SetValue(*t.Parameter.Value)
 	s.SetOverwrite(true)
 
-	response, err := svc.PutParameter(s)
-
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-
-	fmt.Println(response)
+	mySsm.PutParameter(svc, s)
 }
 
 func createTempfile(path string, body []byte) (tempfilePath string) {
