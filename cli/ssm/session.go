@@ -9,9 +9,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
-func GetSession(profile string) (svc *ssm.SSM) {
+func GetSession(profile string, region string) (svc *ssm.SSM) {
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
-		Config:            aws.Config{Region: aws.String("ap-northeast-1")},
+		Config:            aws.Config{Region: aws.String(region)},
 		Profile:           profile,
 		SharedConfigState: session.SharedConfigEnable,
 	}))

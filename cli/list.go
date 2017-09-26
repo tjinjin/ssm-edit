@@ -6,8 +6,8 @@ import (
 	mySsm "github.com/tjinjin/ssm-edit/cli/ssm"
 )
 
-func List(profile string) {
-	svc := mySsm.GetSession(profile)
+func List(profile string, region string) {
+	svc := mySsm.GetSession(profile, region)
 
 	resp := mySsm.DescribeParameters(svc)
 
