@@ -12,10 +12,8 @@ import (
 	mySsm "github.com/tjinjin/ssm-edit/cli/ssm"
 )
 
-func Edit(profile string, region string) {
+func Edit(profile string, region string, name string) {
 	svc := mySsm.GetSession(profile, region)
-
-	name := "test"
 
 	input := &ssm.GetParameterInput{
 		Name: &name,
