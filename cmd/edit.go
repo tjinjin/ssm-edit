@@ -15,6 +15,9 @@
 package cmd
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	edit "github.com/tjinjin/ssm-edit/cli"
@@ -33,7 +36,13 @@ to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		p := viper.GetString("profile")
 		r := viper.GetString("region")
-		edit.Edit(p, r)
+		n := viper.GetString("name")
+
+		if len(n) == 0 {
+			fmt.Println("--name flag required")
+			os.Exit(1)
+		}
+		edit.Edit(p, r, n)
 	},
 }
 
@@ -41,6 +50,8 @@ func init() {
 	RootCmd.AddCommand(editCmd)
 
 	// Here you will define your flags and configuration settings.
+	editCmd.Flags().StringP("name", "n", "", "Specify name [required]")
+	viper.BindPFlag("name", editCmd.Flags().Lookup("name"))
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
