@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"reflect"
 	"strings"
 
 	"github.com/aws/aws-sdk-go/service/ssm"
@@ -33,13 +34,15 @@ func Edit(profile string, region string, name string) {
 
 	editBody := editFile(tempfilePath)
 
-	// GetParameterOutputの形式をparseしてPutParameterInputにしないといけない
-
 	t := &ssm.GetParameterOutput{}
 	b := []byte(editBody)
 	json.Unmarshal(b, &t)
 
-	// 変更がない場合更新しない
+	// compare []uint8 to []uint8
+	if reflect.DeepEqual(body, b) {
+		fmt.Println("No Changed")
+		os.Exit(0)
+	}
 
 	s := &ssm.PutParameterInput{}
 
