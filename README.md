@@ -30,7 +30,11 @@ local flag
 
 
 # Todo
-- Add Makefile
-- Support assumeRole
-- Add test
-- Add `create` command
+- [x] Support assumeRole
+- [ ] Support Pagination to list command
+- [ ] Add `create` command
+- [ ] Add `show` command
+- [ ] Add Makefile
+- [ ] Add test
+- [ ] Add CI
+- [ ] Refactoring!!!
