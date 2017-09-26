@@ -11,12 +11,14 @@ import (
 
 func GetSession(profile string) (svc *ssm.SSM) {
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
-		Config:  aws.Config{Region: aws.String("ap-northeast-1")},
-		Profile: profile,
+		Config:            aws.Config{Region: aws.String("ap-northeast-1")},
+		Profile:           profile,
+		SharedConfigState: session.SharedConfigEnable,
 	}))
-	test := ssm.New(sess)
 
-	return test
+	result := ssm.New(sess)
+
+	return result
 }
 
 func DescribeParameters(svc *ssm.SSM) (resp *ssm.DescribeParametersOutput) {
