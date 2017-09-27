@@ -21,9 +21,8 @@ func GetSession(profile string, region string) (svc *ssm.SSM) {
 	return result
 }
 
-func DescribeParameters(svc *ssm.SSM) (resp *ssm.DescribeParametersOutput) {
+func DescribeParameters(svc *ssm.SSM, input *ssm.DescribeParametersInput) (resp *ssm.DescribeParametersOutput) {
 
-	input := &ssm.DescribeParametersInput{}
 	resp, err := svc.DescribeParameters(input)
 
 	if err != nil {
