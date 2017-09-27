@@ -10,21 +10,19 @@ import (
 func List(profile string, region string) {
 
 	var results []*ssm.DescribeParametersOutput
+	input := &ssm.DescribeParametersInput{}
 
 	svc := mySsm.GetSession(profile, region)
 
-	input := &ssm.DescribeParametersInput{}
-	resp := mySsm.DescribeParameters(svc, input)
-
-	results = append(results, resp)
-
-	input.NextToken = resp.NextToken
-
-	for input.NextToken != nil {
+	for {
 		resp := mySsm.DescribeParameters(svc, input)
 
 		results = append(results, resp)
 		input.NextToken = resp.NextToken
+
+		if input.NextToken == nil {
+			break
+		}
 	}
 
 	for _, i := range results {
