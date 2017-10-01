@@ -7,7 +7,11 @@ Inspiread by https://github.com/tsub/s3-edit
 
 # Install
 
-Download from release page.
+Support homebrew.
+
+```
+$ brew install tjinjin/ssm-edit/ssm-edit
+```
 
 
 # Usage
