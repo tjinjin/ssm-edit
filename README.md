@@ -12,7 +12,20 @@ Support homebrew.
 ```
 $ brew install tjinjin/ssm-edit/ssm-edit
 ```
+# AWS credentials
 
+Support `~/.aws/credential`.
+
+```
+cat ~/.aws/credentials
+[default]
+aws_access_key_id = hogehoge
+aws_secret_access_key = fugafuga
+
+[test]
+role_arn = arn:aws:iam::123456789012:root
+source_profile = default
+```
 
 # Usage
 
