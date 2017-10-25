@@ -41,7 +41,7 @@ func Edit(profile string, region string, name string) {
 	// compare []uint8 to []uint8
 	if reflect.DeepEqual(body, b) {
 		fmt.Println("No Changed")
-		os.Exit(0)
+		return
 	}
 
 	s := &ssm.PutParameterInput{}
