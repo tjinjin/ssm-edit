@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const Version = "0.0.1"
+const Version = "0.0.2"
 
 func ShowVersion() {
 	fmt.Println("ssm-edit v" + Version)
