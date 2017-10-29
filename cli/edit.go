@@ -29,7 +29,7 @@ func Edit(profile string, region string, name string) {
 	}
 
 	// bodyをValueだけにする？
-	tempfilePath := createTempfile("/tmp/"+"test.json", body)
+	tempfilePath := createTempfile(name, body)
 	defer os.Remove(tempfilePath)
 
 	editBody := editFile(tempfilePath)
@@ -41,7 +41,7 @@ func Edit(profile string, region string, name string) {
 	// compare []uint8 to []uint8
 	if reflect.DeepEqual(body, b) {
 		fmt.Println("No Changed")
-		os.Exit(0)
+		return
 	}
 
 	s := &ssm.PutParameterInput{}
@@ -57,7 +57,7 @@ func Edit(profile string, region string, name string) {
 func createTempfile(path string, body []byte) (tempfilePath string) {
 	keys := strings.Split(path, "/")
 	fileName := keys[len(keys)-1]
-	tempfilePath = "/tmp/" + fileName
+	tempfilePath = "/tmp/" + fileName + ".json"
 
 	if err := ioutil.WriteFile(tempfilePath, body, os.ModePerm); err != nil {
 		fmt.Println(err)
