@@ -1,9 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-	"os"
-
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	edit "github.com/tjinjin/ssm-edit/cli"
@@ -19,10 +16,6 @@ var editCmd = &cobra.Command{
 		r := viper.GetString("region")
 		n := viper.GetString("name")
 
-		if len(n) == 0 {
-			fmt.Println("--name flag required")
-			os.Exit(1)
-		}
 		edit.Edit(p, r, n)
 	},
 }

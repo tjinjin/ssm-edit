@@ -10,11 +10,15 @@ import (
 	"strings"
 
 	"github.com/aws/aws-sdk-go/service/ssm"
+	prompt "github.com/tjinjin/ssm-edit/cli/prompt"
 	mySsm "github.com/tjinjin/ssm-edit/cli/ssm"
 )
 
 func Edit(profile string, region string, name string) {
 	svc := mySsm.GetSession(profile, region)
+	if name == "" {
+		name = prompt.Prompt(profile, region)
+	}
 
 	input := &ssm.GetParameterInput{
 		Name: &name,
