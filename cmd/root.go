@@ -40,8 +40,8 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 	// RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.ssm-edit.yaml)")
-	RootCmd.PersistentFlags().StringVarP(&profile, "profile", "p", "default", "~/.aws/credentials (default is default)")
-	RootCmd.PersistentFlags().StringVarP(&region, "region", "r", "ap-northeast-1", "AWS REGION(default is ap-northeast-1)")
+	RootCmd.PersistentFlags().StringVarP(&profile, "profile", "p", "default", "~/.aws/credentials")
+	RootCmd.PersistentFlags().StringVarP(&region, "region", "r", "ap-northeast-1", "AWS REGION")
 	viper.BindPFlag("profile", RootCmd.PersistentFlags().Lookup("profile"))
 	viper.BindPFlag("region", RootCmd.PersistentFlags().Lookup("region"))
 
