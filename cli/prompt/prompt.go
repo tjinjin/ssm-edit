@@ -20,7 +20,6 @@ func Prompt(profile, region string) string {
 		}
 	}
 
-	fmt.Printf("%v\n", items)
 	return listSsm(items)
 }
 
