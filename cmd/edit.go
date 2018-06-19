@@ -15,8 +15,8 @@ var editCmd = &cobra.Command{
 		p := viper.GetString("profile")
 		r := viper.GetString("region")
 		n := viper.GetString("name")
-
-		edit.Edit(p, r, n)
+		s := viper.GetInt("size")
+		edit.Edit(p, r, n, s)
 	},
 }
 
@@ -24,8 +24,10 @@ func init() {
 	RootCmd.AddCommand(editCmd)
 
 	// Here you will define your flags and configuration settings.
-	editCmd.Flags().StringP("name", "n", "", "Specify name [required]")
+	editCmd.Flags().StringP("name", "n", "", "Specify name. If not set, launch prompt")
+	editCmd.Flags().IntP("size", "s", 20, "Customize prompt window size.")
 	viper.BindPFlag("name", editCmd.Flags().Lookup("name"))
+	viper.BindPFlag("size", editCmd.Flags().Lookup("size"))
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:

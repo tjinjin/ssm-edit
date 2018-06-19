@@ -10,7 +10,7 @@ import (
 	mySsm "github.com/tjinjin/ssm-edit/cli/ssm"
 )
 
-func Prompt(profile, region string) string {
+func Prompt(profile, region string, size int) string {
 	svc := mySsm.GetSession(profile, region)
 
 	results := mySsm.ListParameters(svc)
@@ -22,18 +22,18 @@ func Prompt(profile, region string) string {
 	}
 
 	sort.Strings(items)
-	return listSsm(items)
+	return listSsm(items, size)
 }
 
-func listSsm(items []string) string {
+func listSsm(items []string, size int) string {
 	searcher := func(input string, index int) bool {
 		i := strings.ToLower(items[index])
 		return strings.Contains(i, input)
 	}
 	prompt := promptui.Select{
-		Label:    "Select profile",
+		Label:    "Select ssm parameters",
 		Items:    items,
-		Size:     20,
+		Size:     size,
 		Searcher: searcher,
 	}
 
