@@ -3,6 +3,7 @@ package cli
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/manifoldco/promptui"
@@ -20,6 +21,7 @@ func Prompt(profile, region string) string {
 		}
 	}
 
+	sort.Strings(items)
 	return listSsm(items)
 }
 
