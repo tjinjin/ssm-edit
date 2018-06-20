@@ -6,11 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const Version = "0.0.2"
-
-func ShowVersion() {
-	fmt.Println("ssm-edit v" + Version)
-}
+var version string
 
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
@@ -18,7 +14,7 @@ var versionCmd = &cobra.Command{
 	Short: "ssm-edit version",
 	Long:  `ssm-edit version`,
 	Run: func(cmd *cobra.Command, args []string) {
-		ShowVersion()
+		fmt.Println(version)
 	},
 }
 

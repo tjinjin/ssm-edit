@@ -9,6 +9,24 @@ import (
 	"github.com/aws/aws-sdk-go/service/ssm"
 )
 
+func ListParameters(svc *ssm.SSM) []*ssm.DescribeParametersOutput {
+
+	var results []*ssm.DescribeParametersOutput
+	input := &ssm.DescribeParametersInput{}
+
+	for {
+		resp := DescribeParameters(svc, input)
+
+		results = append(results, resp)
+		input.NextToken = resp.NextToken
+
+		if input.NextToken == nil {
+			break
+		}
+	}
+	return results
+}
+
 func GetSession(profile string, region string) (svc *ssm.SSM) {
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		Config:            aws.Config{Region: aws.String(region)},

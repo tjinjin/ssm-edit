@@ -42,43 +42,20 @@ $ ssm-edit list
 $ ssm-edit list --profile hoge --region ap-northeast-1
 ```
 
-You can create parameter by using existing value.
-
 ```
-$ ssm-edit list
-Name: aaa
-$ ssm-edit edit --name aaa
-# open your editor
-{
-  "Parameter": {
-    "Name": "aaa",
-    "Type": "String",
-    "Value": "bbb"
-  }
-}
-# change Name "aaa" -> "bbb"
-{
-  "Parameter": {
-    "Name": "bbb",
-    "Type": "String",
-    "Value": "bbb"
-  }
-}
-
-$ ssm-edit list
-Name: aaa Type: String
-Name: bbb Type: String
+$ ssm-edit edit --name hoge
+> open editor and edit value.
+$ ssm-edit edit
+> open prompt, select name and edit value.
 ```
-
 
 # Todo
 - [x] Support assumeRole
 - [x] Support Pagination to list command
+- [x] Add Makefile
 - [ ] Add `create` command
-- [ ] Add `show` command
-- [ ] Add Makefile
 - [ ] Add test
 - [ ] Add CI
 - [ ] Refactoring!!!
 - [ ] Support Secure String
-- [ ] Add history
+- [ ] show history
