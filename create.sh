@@ -13,3 +13,5 @@ do
 done
 
 cd $PWD
+
+shasum -a 256 assets/darwin_amd64/ssm-edit_${TAG}_darwin_amd64.tar.gz
