@@ -20,8 +20,11 @@ func Edit(profile string, region string, name string, size int) {
 		name = prompt.Prompt(profile, region, size)
 	}
 
+	withDecryption := true
+
 	input := &ssm.GetParameterInput{
-		Name: &name,
+		Name:           &name,
+		WithDecryption: &withDecryption,
 	}
 
 	resp := mySsm.GetParameter(svc, input)
