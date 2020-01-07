@@ -30,5 +30,4 @@ jobs:
         go get github.com/mitchellh/gox
         go get github.com/tcnksm/ghr
         make release
-        git status
 
