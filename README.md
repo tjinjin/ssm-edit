@@ -49,13 +49,3 @@ $ ssm-edit edit
 > open prompt, select name and edit value.
 ```
 
-# Todo
-- [x] Support assumeRole
-- [x] Support Pagination to list command
-- [x] Add Makefile
-- [ ] Add `create` command
-- [ ] Add test
-- [ ] Add CI
-- [ ] Refactoring!!!
-- [ ] Support Secure String
-- [ ] show history
