@@ -9,7 +9,7 @@ clean:
 	rm -rf build/*
 
 build-all: clean
-	gox -os="$(OS)" -arch="$(ARCH)" -ldflags "-X $(VERSION_FLAG)" -output="build/{{.OS}}_{{.Arch}}/{{.Dir}}"
+	${GOPATH}/bin/gox -os="$(OS)" -arch="$(ARCH)" -ldflags "-X $(VERSION_FLAG)" -output="build/{{.OS}}_{{.Arch}}/{{.Dir}}"
 	cd build/ && find . -name "$(VERSION)"
 
 build:
@@ -18,7 +18,7 @@ build:
 package: build-all
 	cd build/darwin_amd64 && tar czf ssm-edit_$(VERSION)_darwin_amd64.tar.gz ssm-edit
 	cd build/linux_amd64 && tar czf ssm-edit_$(VERSION)_linux_amd64.tar.gz ssm-edit
-	find build -type f -name *.gz -exec mv {} pkg \;
+	mkdir pkg && find build -type f -name *.gz -exec mv {} pkg \;
 
 release: package
-	ghr -u tjinjin -r ssm-edit -n "$(VERSION)" $(VERSION) pkg/
+	${GOPATH}/bin/ghr -u tjinjin -r ssm-edit -n "$(VERSION)" $(VERSION) pkg/
